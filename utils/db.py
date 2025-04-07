@@ -1,6 +1,6 @@
 import os
 import sqlite3 as sq
-from classes import *
+from .classes import *
 
 
 PATH = f"{os.getcwd()}/InventorySystem/storage/.db"
@@ -41,7 +41,9 @@ def get_all_vehicles_by_status(status):
     return data
 
 def del_vehicle(id):
-    pass
+    db, cur = connect()
+    cur.execute(f"DELETE FROM vehicles WHERE stock_number='{id}'")
+    disconnect(db)
 
 
 def add_customer():
